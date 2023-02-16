@@ -21,10 +21,11 @@ Here is a working live demo :  https://github.com/deepakmageget/SR_DeliveryDate
 ### Screenshot
 
 ![](https://i.ibb.co/YkJYBrv/Screenshot-1.png)
+![](https://i.ibb.co/Y3ZtK3D/Screenshot-1.png)
 ![](https://i.ibb.co/KyWQTzj/Screenshot-2.png)
 ![](https://i.ibb.co/G9FhFm7/Screenshot-3.png)
 ![](https://i.ibb.co/RSPsG9k/Screenshot-6.png)
-![](https://i.ibb.co/Y3ZtK3D/Screenshot-1.png)
+
 
 
 ## [Usage](#) 
