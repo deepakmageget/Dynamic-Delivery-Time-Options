@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+
+         <section id="carriers" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="1000" translate="label">
+            <group id="deliverydateandtime" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label">
+                <label>Pickup Date Shipping Method Group</label>
+                <field id="active" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10" translate="label" type="select" canRestore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+        
+                <field id="startdate" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1" canRestore="1" showInStore="1">
+                    <label>Start Date of the Slot</label>
+                    <comment>today-today, tommarow:+1d, next day to strat :+1d,+2d,+3d,+4d</comment>
+                </field>
+
+                  <field id="enddate" translate="label" type="text" sortOrder="12" showInDefault="1" showInWebsite="1" canRestore="1" showInStore="1">
+                    <label>End Date of the Slot</label>
+                    <comment>today-today, tommarow:+1d, next day to strat :+1d,+2d,+3d,+4d</comment>
+                </field>
+                <field id="starttimne" translate="label" sortOrder="13" canRestore="1" type="time" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start Time of the Slot</label>
+                </field>
+                   <field id="endtimne" translate="label" sortOrder="14" canRestore="1" type="time" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>End Time of the Slot</label>
+                </field>
+              
+                 <field id="optiondeliverytime" translate="label" type="multiselect" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Delivery Time Options </label>
+                    <source_model>SR\DeliveryDate\Model\Adminhtml\System\Config\Source\DeliveryTime</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+
+                <field id="cutofminute" translate="label" type="text" sortOrder="16" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Cut of Time:</label>
+                    <comment>in minute</comment>
+                </field>
+
+                <field id="name" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="17" translate="label" type="text" canRestore="1">
+                    <label>Method Name</label>
+                </field>
+
+                <field id="price" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="18" translate="label" type="text" canRestore="1">
+                    <label>Price</label>
+                    <validate>validate-number</validate>
+                </field>
+                <field id="sort_order" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="19" translate="label" type="text">
+                    <label>Sort Order</label>
+                </field>
+                <field id="title" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="20" translate="label" type="text" canRestore="1">
+                    <label>Title</label>
+                </field>
+
+                <field id="dynamicslotactive" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="21" translate="label" type="select" canRestore="1">
+                    <label>Dynamic Slot Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Dynamic Delivery Time Options Apply when its enabled.</comment>
+                </field>
+
+                <field id="dynamicslotgenerateminute" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="22" translate="label" type="text" canRestore="1">
+                    <label>Generate Frequency Minutes</label>
+                     <comment>Dynamic Slot Generate Frequency Time (in minute)</comment>
+                </field>
+
+                <field id="dynamicoptiondeliverytime" translate="label" type="multiselect" sortOrder="23" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Dynamic Delivery Time Options </label>
+                    <source_model>SR\DeliveryDate\Model\Adminhtml\System\Config\Source\DynamicSlotDeliveryTime</source_model>
+                    <can_be_empty>1</can_be_empty>
+                </field>
+
+                <field id="sallowspecific" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="24" translate="label" type="select">
+                    <label>Ship to Applicable Countries</label>
+                    <frontend_class>shipping-applicable-country</frontend_class>
+                    <source_model>Magento\Shipping\Model\Config\Source\Allspecificcountries</source_model>
+                </field>
+
+                <field id="specificcountry" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="25" translate="label" type="multiselect">
+                    <label>Ship to Specific Countries</label>
+                    <can_be_empty>1</can_be_empty>
+                    <source_model>Magento\Directory\Model\Config\Source\Country</source_model>
+                </field>
+
+                <!-- <field id="specificerrmsg" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="80" translate="label" type="textarea">
+                    <label>Displayed Error Message</label>
+                </field>  -->
+
+            </group>
+        </section>
+
+    </system>
+</config>

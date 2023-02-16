@@ -1,0 +1,136 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// phpcs:disable Magento2.Templates.ThisInTemplate
+
+/* @var \Magento\Sales\Block\Adminhtml\Order\Invoice\View\Form $block */
+?>
+<?php $_invoice = $block->getInvoice() ?>
+<?php $_order = $_invoice->getOrder() ?>
+<?= $block->getChildHtml('order_info') ?>
+
+<section class="admin__page-section order-view-billing-shipping">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Payment &amp; Shipping Method')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-payment-method
+        <?php if ($_order->getIsVirtual()) { ?> order-payment-method-virtual<?php } ?> admin__fieldset-wrapper">
+            <?php /*Billing Address */ ?>
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Payment Information')) ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <div class="order-payment-method-title"><?= $block->getChildHtml('order_payment') ?></div>
+                <div class="order-payment-currency">
+                    <?= $block->escapeHtml(__('The order was placed using %1.', $_order->getOrderCurrencyCode())) ?>
+                </div>
+                <div class="order-payment-additional"><?= $block->getChildHtml('order_payment_additional') ?></div>
+            </div>
+        </div>
+
+        <?php if (!$_order->getIsVirtual()): ?>
+            <div class="admin__page-section-item order-shipping-address">
+                <?php /*Shipping Address */ ?>
+                <div class="admin__page-section-item-title">
+                    <span class="title"><?= $block->escapeHtml(__('Shipping Information')) ?></span>
+                </div>
+                <div class="admin__page-section-item-content shipping-description-wrapper">
+                    <div class="shipping-description-title">
+                        <?= $block->escapeHtml($_order->getShippingDescription()) ?>
+                    </div>
+                    <div class="shipping-description-content">
+                        <?= $block->escapeHtml(__('Total Shipping Charges')) ?>:
+
+                    <?php if ($this->helper(\Magento\Tax\Helper\Data::class)->displayShippingPriceIncludingTax()): ?>
+                        <?php $_excl = $block->displayShippingPriceInclTax($_order); ?>
+                    <?php else: ?>
+                            <?php $_excl = $block->displayPriceAttribute('shipping_amount', false, ' '); ?>
+                        <?php endif; ?>
+                        <?php $_incl = $block->displayShippingPriceInclTax($_order); ?>
+
+                        <?= /* @noEscape */ $_excl ?>
+            <?php if ($this->helper(\Magento\Tax\Helper\Data::class)
+                    ->displayShippingBothPrices() && $_incl != $_excl): ?>
+                (<?= $block->escapeHtml(__('Incl. Tax')) ?> <?= /* @noEscape */ $_incl ?>)
+            <?php endif; ?>
+                        <div><?= $block->getChildHtml('shipment_tracking') ?></div>
+                        <?php
+                        $order = $block->getOrder();
+                        $orderId = (int)$order->getId();
+
+                        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+                        $productCollection = $objectManager->create(
+                            'Magento\Sales\Model\ResourceModel\Order\CollectionFactory'
+                        );
+                        $collection = $productCollection->create()
+                                    ->addAttributeToSelect('*')
+                                    ->addFieldToFilter('entity_id', ['in' => $orderId]);
+                        foreach ($collection as $product) {
+                            $delivery_date = $product['delivery_date'];
+                            $delivery_comment = $product['delivery_comment'];
+                            $delivery_time = $product['delivery_time'];
+                        }
+                        ?>
+                        <?php if (isset($delivery_date) && !empty($delivery_date)) {?>
+                        <div id="delivery-date">
+                        <strong><?= $block->escapeHtml('Delivery Date') ?>: </strong>
+                        <span class="delivery_date"><?= $block->escapeHtml($delivery_date) ?></span>
+                        </div>
+                        <?php } ?>
+
+                        <?php if (isset($delivery_time) && !empty($delivery_time)) {?>
+                        <div id="delivery-date">
+                        <strong><?= $block->escapeHtml('Delivery Time') ?>: </strong>
+                        <span class="delivery_time"><?= $block->escapeHtml($delivery_time) ?></span>
+                        </div>
+                        <?php } ?>
+                        <?php if (isset($delivery_comment) && !empty($delivery_comment)) {?>
+                        <div id="delivery-date">
+                        <strong><?= $block->escapeHtml('Comment') ?>: </strong>
+                        <span class="delivery_comment"><?= $block->escapeHtml($delivery_comment) ?></span>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        <?php endif; ?>
+
+    </div>
+</section>
+
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Items Invoiced')) ?></span>
+    </div>
+
+    <div id="invoice_item_container" class="admin__page-section-content">
+        <?= $block->getChildHtml('invoice_items') ?>
+    </div>
+</section>
+
+<section class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Order Total')) ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <div class="admin__page-section-item order-comments-history">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Invoice History')) ?></span>
+            </div>
+            <div class="admin__page-section-item-content">
+                <?= $block->getChildHtml('order_comments') ?>
+            </div>
+        </div>
+
+        <div id="history_form" class="admin__page-section-item order-totals">
+            <div class="admin__page-section-item-title">
+                <span class="title"><?= $block->escapeHtml(__('Invoice Totals')) ?></span>
+            </div>
+            <?= $block->getChildHtml('invoice_totals') ?>
+        </div>
+    </div>
+</section>

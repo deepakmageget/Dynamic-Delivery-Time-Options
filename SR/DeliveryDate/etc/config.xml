@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <carriers>
+            <deliverydateandtime>
+                <format>yy-mm-dd</format>
+                <disabled>-1</disabled>
+                <hourMin>8</hourMin>
+                <hourMax>22</hourMax>
+                <active>1</active>
+                <startdate>today</startdate>
+                <enddate>+7d</enddate>
+                <cutofminute>59</cutofminute>
+                <sallowspecific>0</sallowspecific>
+                <model>SR\DeliveryDate\Model\Carrier\Shipping</model>
+                <name>Pickup Rate</name>
+                <title>Pickup Date and Time</title>
+                <price>10</price>
+                <specificerrmsg>This shipping method is not available. To use this shipping method, please contact us.</specificerrmsg>
+                <handling_type>F</handling_type>
+                <starttimne>07,00,00</starttimne>
+                <endtimne>19,00,00</endtimne>
+                <dynamicslotgenerateminute>30</dynamicslotgenerateminute>
+                <dynamicslotactive>0</dynamicslotactive>
+
+            </deliverydateandtime>
+        </carriers>
+    </default>
+</config>

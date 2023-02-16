@@ -1,0 +1,26 @@
+<?php if (!empty($block->getDeliveryDate())) { ?> 
+<div id="delivery-date">
+    <strong><?=  $block->escapeHtml('Delivery Date') ?></strong>
+    <span class="price"><?= $block->escapeHtml($block->getDeliveryDate()) ?></span>
+</div>
+<?php } ?>
+<?php if (!empty($block->getDeliveryTime())) { ?> 
+<div id="delivery-time">
+    <strong><?=  $block->escapeHtml(('Delevery Time')) ?>:</strong>
+    <br/>
+    <span class="price"><?=  $block->escapeHtml($block->getDeliveryTime()) ?></span>
+</div>
+<?php } ?>
+<script type="text/javascript">
+    require(
+        ['jquery'],
+        function($) {
+            var element = $('#delivery-date').detach();
+            $('.box-order-shipping-method').append(element);
+            var element = $('#delivery-time').detach();
+            $('.box-order-shipping-method').append(element);
+        }
+    );
+</script>
+
+

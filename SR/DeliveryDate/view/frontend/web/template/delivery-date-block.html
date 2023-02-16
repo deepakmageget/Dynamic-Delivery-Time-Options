@@ -1,0 +1,42 @@
+
+<div class="deleverydateandtime" id="deleverydateandtimeid">
+    <label class="label">Delivery Date</label>
+<br/>
+<div class="control delivery_date_class">
+    <input class="input-text" type="text" data-bind="datepicker: true" placeholder="Select Date" name="delivery_date" id="delivery_date"/>
+</div>
+<!-- <br/>
+<label class="label">Comment</label>
+<div class="control">
+    <textarea name="delivery_comment" id="delivery_comment"></textarea>
+</div> -->
+<br/>
+<label class="label">Delevery Time </label> 
+<div class="control delivery_time_class">
+
+   <select id="delivery_time" name="delivery_time"
+   data-bind="value: customdata, options: customdata,enable: hasForm">
+   </select>
+</div>
+<br/>
+<br/>
+</div>
+<style>
+    .delivery_date_class{
+        margin-top: 10px;
+    }
+    .delivery_time_class{
+        margin-top: 10px;
+    } 
+    input#delivery_date {
+    width: 59%;
+}
+select#delivery_time {
+    width: 59%;
+} 
+
+.deleverydateandtime{
+   display: none;
+}
+
+</style>
