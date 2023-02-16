@@ -313,8 +313,6 @@ class DeliveryDateConfigProvider implements ConfigProviderInterface
         }
 
         // provide data on config js
-
-        $configData["customvalue"]["customdata"] = ["test1", "test2", "test2"];
         $config = [
             "shipping" => [
                 "delivery_date" => [
