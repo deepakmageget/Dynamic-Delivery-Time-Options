@@ -168,7 +168,7 @@ class DeliveryDateConfigProvider implements ConfigProviderInterface
 
                         if ($time1minut + $cutofmin > 60) {
                             $extramin = $time1minut + $cutofmin - 60;
-                            $time1++;
+                            // $time1++;
                             $updateTime1 = $time1 . $extramin . "00";
                         } else {
                             $updateTime1 = $time1 . $cutofmin . "00";
@@ -190,7 +190,7 @@ class DeliveryDateConfigProvider implements ConfigProviderInterface
 
                         if ($time1minut + $cutofmin > 60) {
                             $extramin = $time1minut + $cutofmin - 60;
-                            $time1++;
+                            // $time1++;
                             $updateTime1 = $time1 . $extramin . "00";
                         } else {
                             $updateTime1 = $time1 . $cutofmin . "00";
@@ -199,13 +199,6 @@ class DeliveryDateConfigProvider implements ConfigProviderInterface
                         if ($endtimnenew >= $updateTime1 && $starttimnenew <= $updateTime1) {
                             if ($updateTime1 >= $getStoreTime) {
                                 $deleveryTimeArray[] = $configtime1;
-                            }else{
-                                $deleveryTimeArray = [];
-                                $deleveryTimeArray[] =
-                                "Sorry today we are not available !";
-                            if ($startDate == "today") {
-                                $startDate = "+1d";
-                            }
                             }
                         }
                     }
@@ -313,6 +306,7 @@ class DeliveryDateConfigProvider implements ConfigProviderInterface
         }
 
         // provide data on config js
+
         $config = [
             "shipping" => [
                 "delivery_date" => [
